@@ -81,9 +81,11 @@ function moveBall() {
 function gameOver() {
     finalScoreElement.textContent = score; 
     gameOverMessage.classList.remove('hidden');
+    gameOverMessage.classList.add('show');
     alert("GAME OVER! Final Score: " + score);
     restartBtn.style.display = "block";
 }
+
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
