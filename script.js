@@ -82,7 +82,7 @@ function gameOver() {
     finalScoreElement.textContent = score; 
     gameOverMessage.classList.remove('hidden');
     gameOverMessage.classList.add('show');
-    alert("GAME OVER! Final Score: " + score);
+    // alert("GAME OVER! Final Score: " + score);
     restartBtn.style.display = "block";
 }
 
