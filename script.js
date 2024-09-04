@@ -100,6 +100,8 @@ function draw() {
 }
 
 function restartGame() {
+    gameOverMessage.classList.remove('show');
+    gameOverMessage.classList.add('hidden');
     initGame();
 }
 
