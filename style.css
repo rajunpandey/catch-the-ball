@@ -50,8 +50,13 @@ button:active {
     color: white;
     font-size: 24px;
     z-index: 10;
+    visibility: hidden;
 }
 
 .hidden {
-    display: hidden;
+    display: none;
+}
+
+#gameOverMessage.show {
+    visibility: visible;
 }
