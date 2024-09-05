@@ -57,29 +57,11 @@ canvas.addEventListener("touchend", () => {
     isDragging = false;
 });
 
-// Mouse drag control for desktop
-canvas.addEventListener("mousedown", (e) => {
-    const relativeX = e.clientX - canvas.offsetLeft;
-    if (relativeX > paddleX && relativeX < paddleX + paddleWidth) {
-        isDragging = true;
-    }
-});
-
 canvas.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-        const relativeX = e.clientX - canvas.offsetLeft;
-        if (relativeX > 0 && relativeX < canvas.width) {
-            paddleX = relativeX - paddleWidth / 2;
-        }
+    const relativeX = e.clientX - canvas.offsetLeft;
+    if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth / 2;
     }
-});
-
-canvas.addEventListener("mouseup", () => {
-    isDragging = false;
-});
-
-canvas.addEventListener("mouseleave", () => {
-    isDragging = false;
 });
 
 
