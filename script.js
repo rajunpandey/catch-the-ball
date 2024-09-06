@@ -2,7 +2,23 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const gameOverMessage = document.getElementById('gameOverMessage');
 const finalScoreElement = document.getElementById('finalScore');
+const highScoreMessage = document.getElementById('highScoreMessage');
 const restartBtn = document.getElementById('restartBtn');
+
+
+const copyrightIcon = document.getElementById('copyrightIcon');
+const popupMessage = document.getElementById('popupMessage');
+const closePopup = document.getElementById('closePopup');
+
+
+copyrightIcon.addEventListener('click', () => {
+    popupMessage.classList.remove('hidden');
+});
+
+
+closePopup.addEventListener('click', () => {
+    popupMessage.classList.add('hidden');
+});
 
 canvas.width = canvas.offsetWidth; 
 canvas.height = 320;
@@ -20,6 +36,7 @@ let speedIncreaseFactor = 1.1;
 let isDragging = false;
 let rightPressed = false;
 let leftPressed = false;
+let highScore = localStorage.getItem('highScore') || 0;
 
 function initGame() {
     paddleX = (canvas.width - paddleWidth) / 2;
@@ -85,6 +102,7 @@ function drawScore() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Score: " + score, 8, 20);
+    ctx.fillText("High Score: " + highScore, canvas.width - 120, 20);
 }
 
 function moveBall() {
@@ -113,7 +131,17 @@ function moveBall() {
 
 
 function gameOver() {
-    finalScoreElement.textContent = score; 
+    finalScoreElement.textContent = score;  
+
+    
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore);  
+        highScoreMessage.textContent = "Congratulations! You set a new high score!";
+    } else {
+        highScoreMessage.textContent = "";
+    }
+    
     gameOverMessage.classList.remove('hidden');
     gameOverMessage.classList.add('show');
     // alert("GAME OVER! Final Score: " + score);
